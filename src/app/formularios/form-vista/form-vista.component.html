@@ -1,0 +1,115 @@
+<h1 class="text-center">Formulario de Contacto</h1>
+
+<section class="container">
+
+  <article class="row">
+    <form action="" [formGroup]="registrar" (ngSubmit)="onSubmit()">
+
+      <section *ngIf="prueba==true" class="alert alert-warning">
+        {{mensajes}}
+      </section>
+
+      <section class="mt-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Escribe nombre"
+          formControlName="nombre"
+          >
+
+          <section *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)">
+            <section *ngIf="nombre?.errors?.['required']" class="alert alert-primary mt-2">
+              El campo Nombre es obligatorio
+            </section>
+          </section>
+      </section>
+
+
+
+      <section class="mt-3">
+        <label for="nombre" class="form-label">Email</label>
+        <input type="text" class="form-control" placeholder="Escribe tu email" formControlName="email" email="true">
+
+        <section *ngIf="email?.invalid && (email?.dirty || email?.touched)">
+          <section  *ngIf="email?.errors?.['required']" class="alert alert-primary mt-2">
+            El campo email es obligatorio
+          </section>
+          <section *ngIf="email?.errors?.['email']">
+            Rellenar bien el campo de email
+          </section>
+        </section>
+      </section>
+
+      <section class="mt-3">
+        <label for="telefono" class="form-label">Telefono</label>
+        <input
+          type="number"
+          class="form-control"
+          placeholder="Escribe tu numero"
+          maxlength="9"
+          formControlName="telefono"
+          >
+
+      <!-- Validaciones -->
+      <section *ngIf="telefono?.invalid && (telefono?.dirty || telefono?.touched)">
+        <section *ngIf="telefono?.errors?.['required']" class="alert alert-warning mt-3">
+          El campo telefono debe ser completado
+        </section>
+        <section *ngIf="telefono?.errors?.['pattern']" class="alert alert-danger mt-3">
+          El telefono solo debemos tener 9 digitos
+        </section>
+      </section>
+
+      </section>
+
+
+
+      <section class=" mt-3">
+        <label for="asunto" class="form-label">Asunto</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Escribe nombre"
+          formControlName="asunto"
+          >
+
+          <section *ngIf="asunto?.invalid && (asunto?.dirty || asunto?.touched)">
+            <section *ngIf="asunto?.errors?.['required']" class="alert alert-primary mt-2">
+              El campo asunto es obligatorio
+            </section>
+          </section>
+      </section>
+
+
+
+      <section class="form-group mt-3 d-flex flex-column">
+        <label for="mensaje" class="form-label">Mensaje</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Escribe nombre"
+          formControlName="mensaje"
+          >
+
+          <section *ngIf="mensaje?.invalid && (mensaje?.dirty || mensaje?.touched)">
+            <section *ngIf="mensaje?.errors?.['required']" class="alert alert-primary mt-2">
+              El campo mensaje es obligatorio
+            </section>
+          </section>
+      </section>
+
+
+
+      <section class="mt-3 mb-3 d-flex justify-content-center">
+        <input
+          type="submit"
+          value="Validar"
+          class="btn btn-primary"
+          [disabled]="!registrar.valid"
+          >
+      </section>
+    </form>
+  </article>
+
+</section>
